@@ -1,0 +1,25 @@
+{
+    "defaultSeverity": "warning",
+    "extends": ["tslint-config-airbnb", "tslint-react"],
+    "rules": {
+        "variable-name": [true, "check-format", "allow-pascal-case"],
+        "max-line-length": [true, 160],
+        "indent": [true, "spaces", 4],
+        "ter-indent": [true, 4, { "SwitchCase": 1 }],
+        "quotemark": [true, "double"],
+        "trailing-comma": [false],
+        "radix": false,
+        "space-before-function-paren": false,
+        "prefer-template": [true, "allow-single-concat"],
+        "comment-format": false,
+        "no-increment-decrement": false,
+        "ter-arrow-parens": false,
+        "import-name": false,
+        "align": [true, "parameters"],
+
+        "jsx-alignment": false,
+        "jsx-boolean-value": ["never"],
+        "jsx-self-close": false,
+        "jsx-no-multiline-js": false
+    }
+}
