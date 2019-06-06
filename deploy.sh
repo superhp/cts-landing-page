@@ -2,7 +2,7 @@
 
 # ----------------------
 # KUDU Deployment Script
-# Version: 1.0.9
+# Version: 1.0.17
 # ----------------------
 
 # Helpers
@@ -99,24 +99,22 @@ selectNodeVersion () {
 # ----------
 
 echo Handling node.js deployment.
+
+
 # 1. Select node version
 selectNodeVersion
 
 # 2. Install npm packages
-if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
-  cd "$DEPLOYMENT_SOURCE"
-  eval $NPM_CMD install
-  mkdir "Build"
-  eval $NPM_CMD run-script build
+if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  echo "Running $NPM_CMD install --production"
+  eval $NPM_CMD install --production
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
 
 # 3. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/build" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
   exitWithMessageOnError "Kudu Sync failed"
 fi
-
-##################################################################################################################################
-echo "Finished successfully."
