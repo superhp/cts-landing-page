@@ -27,6 +27,6 @@ steps:
     serverUrl: 'ftps://waws-prod-db3-087.ftp.azurewebsites.windows.net/site/wwwroot'
     username: 'cts-landing-page\$cts-landing-page'
     password: nbKPebYAcxxWwLrqNYzAld6iXXw17BS1zoQcZTdQN5NvuskXseYlvzJNCPt0
-    rootDirectory: '$(Build.ArtifactStagingDirectory)'
+    rootDirectory: '/home/vsts/work/1/s/dist'
     remoteDirectory: /
     cleanContents: true
