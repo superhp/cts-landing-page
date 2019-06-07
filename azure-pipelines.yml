@@ -29,4 +29,4 @@ steps:
     password: 'nbKPebYAcxxWwLrqNYzAld6iXXw17BS1zoQcZTdQN5NvuskXseYlvzJNCPt0'
     rootDirectory: '/home/vsts/work/1/s/dist'
     remoteDirectory: /
-    cleanContents: true
+    cleanContents: false
