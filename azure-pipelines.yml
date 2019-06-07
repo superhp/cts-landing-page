@@ -19,14 +19,3 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-
-- task: FtpUpload@2
-  displayName: 'FTP Upload: $(Build.ArtifactStagingDirectory)'
-  inputs:
-    credentialsOption: inputs
-    serverUrl: 'ftps://waws-prod-db3-087.ftp.azurewebsites.windows.net/site/wwwroot'
-    username: 'cts-landing-page\$cts-landing-page'
-    password: nbKPebYAcxxWwLrqNYzAld6iXXw17BS1zoQcZTdQN5NvuskXseYlvzJNCPt0
-    rootDirectory: '/home/vsts/work/1/s/dist'
-    remoteDirectory: /
-    cleanContents: true
