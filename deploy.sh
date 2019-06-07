@@ -2,8 +2,29 @@
 
 # ----------------------
 # KUDU Deployment Script
-# Version: 1.0.17
+# Version: {Version}
 # ----------------------
+
+# Helpers
+# -------
+
+exitWithMessageOnError () {
+  if [ ! $? -eq 0 ]; then
+    echo "An error has occurred during web site deployment."
+    echo $1
+    exit 1
+  fi
+}
+
+# Prerequisites
+# -------------
+
+# Verify node.js installed
+hash node 2>/dev/null
+exitWithMessageOnError "Missing node.js executable, please install node.js, if already installed make sure it can be reached from current environment."
+
+# Setup
+# -----
 
 SCRIPT_DIR="${BASH_SOURCE[0]%\\*}"
 SCRIPT_DIR="${SCRIPT_DIR%/*}"
@@ -13,7 +34,6 @@ KUDU_SYNC_CMD=${KUDU_SYNC_CMD//\"}
 if [[ ! -n "$DEPLOYMENT_SOURCE" ]]; then
   DEPLOYMENT_SOURCE=$SCRIPT_DIR
 fi
-BUILD_SOURCE=$SCRIPT_DIR/build
 
 if [[ ! -n "$NEXT_MANIFEST_PATH" ]]; then
   NEXT_MANIFEST_PATH=$ARTIFACTS/manifest
@@ -44,15 +64,29 @@ if [[ ! -n "$KUDU_SYNC_CMD" ]]; then
   fi
 fi
 
-# 2. Install npm packages
-cd "$DEPLOYMENT_SOURCE"
-npm install
+##################################################################################################################################
+# Deployment
+# ----------
 
-# 3. Build
-eval $NPM_CMD build
+echo Handling react app deployment.
 
-# 3. KuduSync
+# 1. Install npm packages
+if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  cd "$DEPLOYMENT_SOURCE"
+  echo "Running npm install"
+  eval npm install
+  exitWithMessageOnError "npm failed"
+  echo "Building react app"
+  eval npm run build
+  exitWithMessageOnError "react build failed"
+ cd - > /dev/null
+fi
+
+# 2. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
-  "$KUDU_SYNC_CMD" -v 50 -f "$BUILD_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/build" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
   exitWithMessageOnError "Kudu Sync failed"
 fi
+
+##################################################################################################################################
+echo "Finished successfully."
