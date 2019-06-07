@@ -28,5 +28,5 @@ steps:
     username: 'cts-landing-page\$cts-landing-page'
     password: 'nbKPebYAcxxWwLrqNYzAld6iXXw17BS1zoQcZTdQN5NvuskXseYlvzJNCPt0'
     rootDirectory: '/home/vsts/work/1/s/dist'
-    remoteDirectory: /
+    remoteDirectory: '/site/wwwroot'
     cleanContents: false
