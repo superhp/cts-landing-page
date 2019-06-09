@@ -77,7 +77,7 @@ if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   eval npm install
   exitWithMessageOnError "npm failed"
   echo "Building react app"
-  eval npm run build
+  eval npm run build  
   exitWithMessageOnError "react build failed"
  cd - > /dev/null
 fi
@@ -87,6 +87,11 @@ if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
   "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/build" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
   exitWithMessageOnError "Kudu Sync failed"
 fi
+
+# 3. express 
+cd "$DEPLOYMENT_TARGET"
+echo "Installing Express"
+eval npm install -g express
 
 ##################################################################################################################################
 echo "Finished successfully."
