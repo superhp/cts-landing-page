@@ -95,7 +95,9 @@ eval npm install express
 
 # 3. server file 
 echo "Create server file"
-eval echo "var express=require('express');var app=express();var options={index:'index.html'};app.use('/',express.static('/home/site/wwwroot',options));app.listen(process.env.PORT);" > index.js
+cat <<'END' > index.js
+var express=require('express');var app=express();var options={index:'index.html'};app.use('/',express.static('/home/site/wwwroot',options));app.listen(process.env.PORT);
+END
 
 ##################################################################################################################################
 echo "Finished successfully."
