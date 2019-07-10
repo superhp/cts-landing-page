@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { Login } from "./components/login/login";
 import { Menu } from "./components/menu/menu";
-import { Tile } from "./components/tile/tile";
-import { appList } from "./appData";
+import { AppList } from "./components/appList/appList";
 
 import "./app.less";
 
 const App = () => {
+    const [user, setUser] = useState({ isLoggedIn: false, isVerified: false });
+
     return (
-        <React.Fragment>
-            <Menu />
-            <div className="app-container">
-                <div className="tile-container">
-                    {appList.map((app, index) => {
-                        return <Tile key={index} className={app.className} title={app.title} description={app.description}
-                            url={app.url} buttonText={app.buttonText} />;
-                    })}
-                </div>
-            </div>
-        </React.Fragment>
+        user.isLoggedIn ? (
+            <React.Fragment>
+                <Menu />
+                <AppList />
+            </React.Fragment>
+        ) :
+        <Login isVerified={user.isVerified} />
     );
 };
 
