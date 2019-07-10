@@ -3,7 +3,7 @@ import axios from "axios";
 import "./menu.less";
 
 const logo = require("../../../public/img/cognizant-logo.svg");
-const logoutClickHandler = (event: React.MouseEvent) => axios.get("https://auth.ctsbaltic.com/api/auth/signiout")
+const logoutClickHandler = (event: React.MouseEvent) => axios.get("https://auth.ctsbaltic.com/api/auth/signout")
     .catch();
 
 const Menu = () => {

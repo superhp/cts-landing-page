@@ -32,10 +32,12 @@ const Login = (props: ILoginProps) => {
         .then(() => setState({ ...state, isLoggedIn: true }))
         .catch();
 
-    const emailButtonClickHandler = (event: React.MouseEvent) => axios
-        .post("https://auth.ctsbaltic.com/api/verification/emailCode", { email: state.cognizantEmail })
-        .then(() => setState({ ...state, isEmailLoading: true, isEmailSent: false }))
-        .catch();
+    const emailButtonClickHandler = (event: React.MouseEvent) => {
+        setState({ ...state, isEmailLoading: true, isEmailSent: false });
+        axios.post("https://auth.ctsbaltic.com/api/verification/emailCode", { email: state.cognizantEmail })
+            .then(() => setState({ ...state, isEmailLoading: false, isEmailSent: true }))
+            .catch(() => setState({ ...state, isEmailLoading: false, isEmailSent: false }));
+    };
 
     return (
         <div className="login-container">
