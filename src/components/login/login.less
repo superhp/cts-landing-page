@@ -1,0 +1,111 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 400px;
+    height: 100vh;
+    background-image: linear-gradient(#0033A0, #0095DB);
+    padding-bottom: 20vh;
+
+    .logo {
+        width: 240px;
+    }
+
+    .login {
+        background-color: #fff;
+        padding: 30px 20px;
+        box-shadow: 0 1px 2px rgba(0, 18, 58, 0.15);
+
+        .login-title {
+            font-size: 32px;
+            font-weight: 500;
+            color: #545b6b;
+            margin-bottom: 6px;
+        }
+
+        .login-subtitle {
+            color: #545b6b;
+            margin-bottom: 20px;
+        }
+
+        .login-methods {
+            button {
+                padding: 12px 24px;
+                color: #fff;
+                border: none;
+                font-size: 18px;
+                font-weight: 500;
+                outline: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                svg {
+                    margin-right: 6px;
+                }
+            }
+
+            .login-facebook {
+                background-color: #3b5998;
+                margin-right: 10px;
+
+                &:hover, &:active, &:focus {
+                    background-color: rgba(#3b5998, 0.90);
+                }
+            }
+
+            .login-google {
+                background-color: #DB4437;
+
+                &:hover, &:active, &:focus {
+                    background-color: rgba(#DB4437, 0.90);
+                }
+            }
+        }
+
+        .login-email-verification {
+            display: flex;
+            flex-direction: column;
+
+            .login-email {
+                padding: 8px 8px 4px 0;
+                margin-bottom: 32px;
+                border: none;
+                border-bottom: solid 2px #C8DEFA;
+                color: #545b6b;
+                transition: border-bottom 0.3s ease;
+
+                &:hover, &:active, &:focus {
+                    outline: none;
+                    border-bottom: solid 2px #93BCF5;
+                }
+
+                &::placeholder {
+                    color: #b3b3b3;
+                }
+            }
+
+            .login-email-button {
+                padding: 12px 24px;
+                color: #fff;
+                background-color: #0073BC;
+                border: none;
+                font-size: 18px;
+                font-weight: 500;
+                outline: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover, &:active, &:focus {
+                    outline: none;
+                    background-color: #0095DB;
+                }
+
+                svg {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}
