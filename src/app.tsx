@@ -19,5 +19,4 @@ const App = () => {
         <Login isVerified={user.isVerified} />
     );
 };
-
 export { App };
