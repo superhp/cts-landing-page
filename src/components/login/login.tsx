@@ -22,10 +22,10 @@ const Login = (props: ILoginProps) => {
 
     const emailInputChangeHandler = (event: React.FormEvent<HTMLInputElement>) => setState({ ...state, cognizantEmail: event.currentTarget.value });
 
-    const facebookClickHandler = (event: React.MouseEvent) => 
+    const facebookClickHandler = (event: React.MouseEvent) =>
         location.href = "https://auth.ctsbaltic.com/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
-    const googleClickHandler = (event: React.MouseEvent) => 
+    const googleClickHandler = (event: React.MouseEvent) =>
             location.href = "https://auth.ctsbaltic.com/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
     const emailButtonClickHandler = (event: React.MouseEvent) => {
