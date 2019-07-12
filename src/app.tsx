@@ -9,7 +9,7 @@ import "./app.less";
 const App = () => {
     const [user, setUser] = useState({ isLoggedIn: false, isVerified: false });
     useEffect(() => {
-        axios.get("htps://auth.ctsbaltic.com/api/auth/user")
+        axios.get("https://auth.ctsbaltic.com/api/auth/user")
         .then((response) => { setUser({ isLoggedIn: true, isVerified: response.data.IsVerified }); })
         .catch();
     });
