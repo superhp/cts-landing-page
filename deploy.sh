@@ -70,11 +70,15 @@ fi
 
 echo Handling react app deployment.
 
+# Install npm-cache 
+echo "Installing npm-cache"
+eval npm install -g npm-cache
+
 # 1. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
-  echo "Running npm install"
-  eval npm install
+  echo "Running npm-cache install"
+  eval npm-cache install
   exitWithMessageOnError "npm failed"
   echo "Building react app"
   eval npm run build  
@@ -91,7 +95,7 @@ fi
 # 3. express 
 cd "$DEPLOYMENT_TARGET"
 echo "Installing Express"
-eval npm install express
+eval npm-cache install -g express
 
 # 3. server file 
 echo "Create server file"
