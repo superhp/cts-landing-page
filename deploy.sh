@@ -78,7 +78,7 @@ eval npm install -g npm-cache
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
   echo "Running npm-cache install"
-  eval npm-cache install
+  eval /home/site/npm-global/bin/npm-cache install --cacheDirectory /home/site/npm-cache/
   exitWithMessageOnError "npm failed"
   echo "Building react app"
   eval npm run build  
@@ -95,7 +95,7 @@ fi
 # 3. express 
 cd "$DEPLOYMENT_TARGET"
 echo "Installing Express"
-eval npm-cache install -g express
+eval /home/site/npm-global/bin/npm-cache install express --cacheDirectory /home/site/npm-cache/
 
 # 3. server file 
 echo "Create server file"
