@@ -70,15 +70,18 @@ fi
 
 echo Handling react app deployment.
 
-# Install npm-cache 
-echo "Installing npm-cache"
-eval npm install -g npm-cache
+$NPM_CACHE_CMD = $APPDATA/npm/node_modules/npmCache/bin/kuduSynnpmCache
+if [[ ! -n "$NPM_CACHE_CMD" ]]; then
+  # Install npm-cache 
+  echo "Installing npm-cache"
+  eval npm install npm-cache -g --silent
+fi
 
 # 1. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
   echo "Running npm-cache install"
-  eval /home/site/npm-global/bin/npm-cache install --cacheDirectory /home/site/npm-cache/
+  eval $NPM_CACHE_CMD install
   exitWithMessageOnError "npm failed"
   echo "Building react app"
   eval npm run build  
@@ -95,7 +98,7 @@ fi
 # 3. express 
 cd "$DEPLOYMENT_TARGET"
 echo "Installing Express"
-eval /home/site/npm-global/bin/npm-cache install express --cacheDirectory /home/site/npm-cache/
+eval $NPM_CACHE_CMD install express
 
 # 3. server file 
 echo "Create server file"
