@@ -70,7 +70,7 @@ fi
 
 echo Handling react app deployment.
 
-$NPM_CACHE_CMD=$APPDATA/npm/node_modules/npmCache/bin/npmCache
+NPM_CACHE_CMD=$APPDATA/npm/node_modules/npmCache/bin/npmCache
 if [[ ! -n "$NPM_CACHE_CMD" ]]; then
   # Install npm-cache 
   echo "Installing npm-cache"
