@@ -8,10 +8,10 @@ const logo = require("../../../public/img/cognizant-logo.svg");
 
 interface ILoginProps {
     isVerified: boolean;
+    isLoggedIn: boolean;
 }
 
 const initialState = {
-    isLoggedIn: false,
     isEmailLoading: false,
     isEmailSent: false,
     cognizantEmail: null
@@ -39,7 +39,7 @@ const Login = (props: ILoginProps) => {
         <div className="login-container">
             <img className="logo" src={logo} />
             <div className="login">
-                {!state.isLoggedIn && (
+                {!props.isLoggedIn && (
                     <React.Fragment>
                         <div className="login-title">Hi, there!</div>
                         <div className="login-subtitle">Sign in to continue</div>
@@ -55,7 +55,7 @@ const Login = (props: ILoginProps) => {
                         </div>
                     </React.Fragment>
                 )}
-                {state.isLoggedIn && !props.isVerified && (
+                {props.isLoggedIn && !props.isVerified && (
                     <React.Fragment>
                         <div className="login-title">Almost done...</div>
                         <div className="login-subtitle">Verify that you are Cognizant employee</div>

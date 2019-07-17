@@ -27,7 +27,7 @@ const App = () => {
                 <AppList />
             </React.Fragment>
         ) :
-        <Login isVerified={user.isVerified} />
+        <Login isVerified={user.isVerified} isLoggedIn={user.isLoggedIn} />
     );
 };
 export { App };
