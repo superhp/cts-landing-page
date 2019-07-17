@@ -31,7 +31,7 @@ const Login = (props: ILoginProps) => {
     const emailButtonClickHandler = (event: React.MouseEvent) => {
         setState({ ...state, isEmailLoading: true, isEmailSent: false });
         axios.post("https://auth.ctsbaltic.com/api/verification/emailCode", { email: state.cognizantEmail })
-            .then((res) => {console.log(res); setState({ ...state, isEmailLoading: false, isEmailSent: true })})
+            .then(() => setState({ ...state, isEmailLoading: false, isEmailSent: true }))
             .catch(() => setState({ ...state, isEmailLoading: false, isEmailSent: false }));
     };
 
