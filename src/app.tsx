@@ -21,7 +21,7 @@ const App = () => {
         }
     });
     return (
-        user.isLoggedIn ? (
+        user.isVerified ? (
             <React.Fragment>
                 <Menu />
                 <AppList />
