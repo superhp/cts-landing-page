@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "jsx": "react",
-        "lib": ["es2015", "dom", "es2015.promise"],
+        "lib": ["es2016", "dom", "es2016.promise"],
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,

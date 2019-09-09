@@ -3,31 +3,44 @@ import React, { useState, useEffect } from "react";
 import { Login } from "./components/login/login";
 import { Menu } from "./components/menu/menu";
 import { AppList } from "./components/appList/appList";
-import axios from "axios";
+import { createGlobalState } from "react-hooks-global-state";
 import "./app.less";
+import { api } from "./helpers/axiosHelper";
+import { Snackbars } from "./components/snackbar/snackbar";
+import { createGlobalStore, useGlobalState } from "./store/state";
 
 const App = () => {
+
     const [user, setUser] = useState({ isLoggedIn: false, isVerified: false });
+    const [snackbar] = useGlobalState("snackbar");
     useEffect(() => {
-        if(!user.isLoggedIn) {
-            const api = axios.create({
-                withCredentials: true,
-            });
-            api.get("https://auth.ctsbaltic.com/api/auth/user")
-                .then((response) => { 
-                    setUser({ isLoggedIn: true, isVerified: response.data.IsVerified });
+        if (!user.isLoggedIn) {
+
+            api.get("auth/user")
+                .then((response) => {
+                    setUser({ isLoggedIn: true, isVerified: response.data.isVerified });
                 })
                 .catch();
         }
     });
     return (
-        user.isVerified ? (
-            <React.Fragment>
-                <Menu />
-                <AppList />
-            </React.Fragment>
-        ) :
-        <Login isVerified={user.isVerified} isLoggedIn={user.isLoggedIn} />
+        <div>
+            <Menu isVerified={user.isVerified} isLoggedIn={user.isLoggedIn} />
+            {
+                user.isVerified ? (
+                    <React.Fragment>
+                        <AppList />
+                    </React.Fragment>
+                ) :
+                    <Login isVerified={user.isVerified} isLoggedIn={user.isLoggedIn} />
+            }
+            <Snackbars
+                message={snackbar.message}
+                show={snackbar.show}
+                variant={snackbar.variant}
+            />
+        </div>
+
     );
 };
 export { App };

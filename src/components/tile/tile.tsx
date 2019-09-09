@@ -7,6 +7,7 @@ interface ITileProps {
     description: string;
     url: string;
     buttonText: string;
+    buttonClickListner: Function;
     className: string;
 }
 
@@ -18,7 +19,7 @@ const Tile = (props: ITileProps) => {
                 <div className="tile-description">{props.description}</div>
             </div>
             <div className="tile-action-container">
-                <button>
+                <button onClick={() => {props.buttonClickListner()}}>
                     {props.buttonText}
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24">
