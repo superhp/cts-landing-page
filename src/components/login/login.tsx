@@ -25,12 +25,12 @@ const Login = (props: ILoginProps) => {
     const codeInputChangeHandler = (event: React.FormEvent<HTMLInputElement>) => setState({ ...state, verificationCode: event.currentTarget.value });
 
     const facebookClickHandler = (event: React.MouseEvent) =>
-         location.href = "https://auth.ctsbaltic.com/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
-       // location.href = "http://localhost:51581/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
+      //   location.href = "https://auth.ctsbaltic.com/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
+        location.href = "http://localhost:51581/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
     const googleClickHandler = (event: React.MouseEvent) =>
-         location.href = "https://auth.ctsbaltic.com/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
-       // location.href = "http://localhost:51581/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
+       //  location.href = "https://auth.ctsbaltic.com/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
+        location.href = "http://localhost:51581/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
     const emailButtonClickHandler = (event: React.MouseEvent) => {
 
@@ -42,7 +42,6 @@ const Login = (props: ILoginProps) => {
         setState({ ...state, loading: true, isEmailSent: false });
         api.post("verification/emailCode", { email: state.cognizantEmail })
             .then(() => {
-
                 setState({ ...state, loading: false, isEmailSent: true })
             })
             .catch((error) => {
@@ -56,7 +55,8 @@ const Login = (props: ILoginProps) => {
     const codeButtonClickHandler = (event: React.MouseEvent) => {
         setState({ ...state, loading: true });
         api.get("verification/verify/" + state.verificationCode)
-            .then(() => location.href = "http://localhost:3000")
+        .then(() => location.href = "http://localhost:3000")
+        //.then(() => location.href = "https://ctsbaltic.com")
             .catch((error) => {
                 if (error.response.status === 400) {
 

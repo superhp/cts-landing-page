@@ -5,8 +5,8 @@ import { api } from "../../helpers/axiosHelper";
 
 const logo = require("../../../public/img/cognizant-logo.svg");
 const logoutClickHandler = (event: React.MouseEvent) =>
-    //location.href = "http://localhost:51581/api/auth/signout";
-    location.href = "https://auth.ctsbaltic.com/api/auth/signout";
+    location.href = "http://localhost:51581/api/auth/signout";
+//    location.href = "https://auth.ctsbaltic.com/api/auth/signout";
 
 interface IMenuProps {
     isVerified: boolean;
