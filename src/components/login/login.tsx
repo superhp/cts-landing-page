@@ -25,12 +25,12 @@ const Login = (props: ILoginProps) => {
     const codeInputChangeHandler = (event: React.FormEvent<HTMLInputElement>) => setState({ ...state, verificationCode: event.currentTarget.value });
 
     const facebookClickHandler = (event: React.MouseEvent) =>
-      //   location.href = "https://auth.ctsbaltic.com/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
-        location.href = "http://localhost:51581/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
+         location.href = "https://auth.ctsbaltic.com/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
+      //  location.href = "http://localhost:51581/api/auth/signin/Facebook?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
     const googleClickHandler = (event: React.MouseEvent) =>
-       //  location.href = "https://auth.ctsbaltic.com/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
-        location.href = "http://localhost:51581/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
+         location.href = "https://auth.ctsbaltic.com/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
+      //  location.href = "http://localhost:51581/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
     const emailButtonClickHandler = (event: React.MouseEvent) => {
 
