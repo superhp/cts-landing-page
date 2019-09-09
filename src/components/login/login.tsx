@@ -55,8 +55,8 @@ const Login = (props: ILoginProps) => {
     const codeButtonClickHandler = (event: React.MouseEvent) => {
         setState({ ...state, loading: true });
         api.get("verification/verify/" + state.verificationCode)
-        .then(() => location.href = "http://localhost:3000")
-        //.then(() => location.href = "https://ctsbaltic.com")
+        //.then(() => location.href = "http://localhost:3000")
+        .then(() => location.href = "https://ctsbaltic.com")
             .catch((error) => {
                 if (error.response.status === 400) {
 

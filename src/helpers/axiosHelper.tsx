@@ -16,6 +16,6 @@ service.register({
 
 export const api = axios.create({
     withCredentials: true,
-    //baseURL: "https://auth.ctsbaltic.com/api/"
-    baseURL: "http://localhost:51581/api/"
+    baseURL: "https://auth.ctsbaltic.com/api/"
+    //baseURL: "http://localhost:51581/api/"
 });
