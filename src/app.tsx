@@ -22,7 +22,7 @@ const App = () => {
                 })
                 .catch();
         }
-    });
+    }, []);
     return (
         <div>
             <Menu isVerified={user.isVerified} isLoggedIn={user.isLoggedIn} />
