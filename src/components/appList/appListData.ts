@@ -5,11 +5,11 @@ const appList = [/*{
     buttonText: "Go",
     className: "share-car"
 },*/ {
-    title: "Hugs",
+    title: "Kudos",
     description: "Get reward for something good you have done today!",
-    url: "https://hugs.ctsbaltic.com",
+    url: "https://kudos.ctsbaltic.com",
     buttonText: "Go",
-    className: "share-car"
+    className: "kudos-app"
 }/*,{
     title: "ParkingApp",
     description: "Get the parking place next to your office!",
