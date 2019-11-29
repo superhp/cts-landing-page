@@ -1,6 +1,5 @@
 @image-share-car: url("../../../public/img/share-car.jpg");
 @image-parking-app: url("../../../public/img/parking-app.jpg");
-@image-kudos-app: url("../../../public/img/kudos-app.jpg");
 
 .background(@color, @image) {
     background-image: linear-gradient(0deg, @color 0%, rgba(255, 255, 255, 0) 70%), @image;
@@ -58,10 +57,6 @@
 
     &.parking-app {
         .background(rgb(0, 51, 160), @image-parking-app);
-    }
-
-    &.kudos-app {
-        .background(rgb(197, 127, 47), @image-kudos-app);
     }
 
     .tile-description-container {
