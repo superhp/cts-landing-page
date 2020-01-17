@@ -33,9 +33,10 @@ const Login = (props: ILoginProps) => {
       //  location.href = "http://localhost:51581/api/auth/signin/Google?returnUrl=https%3A%2F%2Fctsbaltic.com";
 
     const emailButtonClickHandler = (event: React.MouseEvent) => {
-
-        if (state.cognizantEmail.substring(state.cognizantEmail.length - 14) !== "@cognizant.com") {
-            dispatch({ type: "showSnackbar", data: { show: true, message: "Only cognizant emails are allowed", variant: "error" } });
+        var pattern = /[a-zA-Z]+\.[a-zA-Z]+@cognizant.com/;
+        var match = state.cognizantEmail.match(pattern);
+        if (match == null || match.length > 1 || match[0].length !== state.cognizantEmail.length) {
+            dispatch({ type: "showSnackbar", data: { show: true, message: "Incorrect format of email address", variant: "error" } });
             return;
         }
 
@@ -46,7 +47,7 @@ const Login = (props: ILoginProps) => {
             })
             .catch((error) => {
                 if (error.response.status === 400) {
-                    dispatch({ type: "showSnackbar", data: { show: true, message: "Only cognizant emails are allowed", variant: "error" } });
+                    dispatch({ type: "showSnackbar", data: { show: true, message: "Incorrect format of email address", variant: "error" } });
                 }
                 setState({ ...state, loading: false, isEmailSent: false })
             });
@@ -89,7 +90,7 @@ const Login = (props: ILoginProps) => {
                 {props.isLoggedIn && !props.isVerified && (
                     <React.Fragment>
                         <div className="login-title">Almost done...</div>
-                        <div className="login-subtitle">Verify that you are Cognizant employee</div>
+                        <div className="login-subtitle"> {state.isEmailSent ? "Enter your Cognizant email according to specified format" : "Enter the code you have just received"}</div>
                         <div className="login-email-verification">
                             {state.isEmailSent
                                 ? (
@@ -103,7 +104,7 @@ const Login = (props: ILoginProps) => {
                                 )
                                 : (
                                     <React.Fragment>
-                                        <input value={state.cognizantEmail} className="login-email" type="email" placeholder={"Enter your Cognizant email"} onChange={emailInputChangeHandler} />
+                                        <input value={state.cognizantEmail} className="login-email" type="email" placeholder={"e.g. John.Johanson@cognizant.com"} onChange={emailInputChangeHandler} />
                                         <button className="login-email-button" onClick={emailButtonClickHandler}>
                                             {state.loading && <FontAwesomeIcon icon={faCircleNotch} spin={true} />}
                                             {"Send verification email"}
