@@ -90,7 +90,7 @@ const Login = (props: ILoginProps) => {
                 {props.isLoggedIn && !props.isVerified && (
                     <React.Fragment>
                         <div className="login-title">Almost done...</div>
-                        <div className="login-subtitle"> {state.isEmailSent ? "Enter your Cognizant email according to specified format" : "Enter the code you have just received"}</div>
+                        <div className="login-subtitle"> {state.isEmailSent ? "Enter the code you have just received" : "Enter your Cognizant email according to specified format"}</div>
                         <div className="login-email-verification">
                             {state.isEmailSent
                                 ? (
